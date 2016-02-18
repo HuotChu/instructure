@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructure Course Listings: Test Runner</title>
+
+    <link rel="icon" type="image/png" href="http://www.squaredb.com/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="testharness.css" />
+
+</head>
+<body>
+
+<div id='log'></div>
+
+<script>
+    var require = {
+        deps: ['unit-tests-ui'],
+        callback: function(tests) {
+            tests.run();
+        }
+    };
+</script>
+
+<script src="../lib/require-min.js"></script>
+<script src="../lib/square-min.js"></script>
+<script src="testharnessreport.js"></script>
+
+</body>
+</html>
