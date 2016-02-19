@@ -58,6 +58,21 @@ define(['testharness', 'request', 'db'],
                         });
                     });
                 }, "Retrieve 2 courses and pagination links from Canvas API");
+                
+                harness.async_test(function (test) {
+                    promise.then(function (xhr) {
+                        var token = JSON.parse(xhr.responseText).token;
+
+                        request('http://canvas-api.herokuapp.com/api/v1/courses/1?access_token=' + token).then(function (xhr2) {
+                            var course = JSON.parse(xhr2.responseText);
+
+                            test.step(function (){
+                                harness.assert_true(course.id === 1 && course.code === "ENGL 2100");
+                                test.done();
+                            });
+                        });
+                    });
+                }, "Return specific course based on id");
             }
         };
     }
