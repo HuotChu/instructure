@@ -1,0 +1,59 @@
+.parallax, .water, .hills, .mountains, .sky {
+    min-width: 100%;
+    max-width: 100%;
+    list-style-type: none;
+}
+
+@-webkit-keyframes backgroundScroll {
+    from {background-position: 0 0;}
+    to {background-position: -99999999px 0;}
+}
+
+@keyframes backgroundScroll {
+    from {background-position: 0 0;}
+    to {background-position: -99999999px 0;}
+}
+
+.water {
+    background: url("water.jpg") repeat-x;
+    -webkit-animation: backgroundScroll 500000s linear infinite;
+    animation: backgroundScroll 500000s linear infinite;
+    height: 286px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+}
+
+.hills {
+    background: url("hills.png") repeat-x;
+    -webkit-animation: backgroundScroll 1000000s linear infinite;
+    animation: backgroundScroll 1000000s linear infinite;
+    height: 45px;
+    position: absolute;
+    bottom: 286px;
+    left: 0;
+    z-index: 997;
+}
+
+.mountains {
+    background: url("mountains.png") repeat-x;
+    -webkit-animation: backgroundScroll 2000000s linear infinite;
+    animation: backgroundScroll 2000000s linear infinite;
+    height: 220px;
+    position: absolute;
+    bottom: 286px;
+    left: 0;
+    z-index: 996;
+}
+
+.sky {
+    background: url("sky.jpg") repeat-x;
+    -webkit-animation: backgroundScroll 4000000s linear infinite;
+    animation: backgroundScroll 4000000s linear infinite;
+    height: 700px;
+    position: absolute;
+    bottom: 287px;
+    left: 0;
+    z-index: 995;
+}
