@@ -7,13 +7,15 @@ define(['testharness', 'request', 'db'],
                 // SETUP FOR TESTS
                 //
                 // Create a Model
-                var model = db.createDB('instructure');
+                var model = db.createDB('instructure'),
+                    promise = request('http://canvas-api.herokuapp.com/api/v1/tokens', 'post');
                 // Add tables & columns
                 model.createTable('Users')('username', 'token');
                 model.createTable('Courses')('id', 'name', 'code', 'description', 'start', 'end', 'created', 'updated');
 
+                // TESTS
                 harness.async_test(function (test) {
-                    request('http://canvas-api.herokuapp.com/api/v1/tokens', 'post').then(function (xhr) {
+                    promise.then(function (xhr) {
                         var responseText = xhr.responseText;
 
                         test.step(function () {
@@ -24,9 +26,8 @@ define(['testharness', 'request', 'db'],
                 }, "Acquire access token from Canvas API");
 
                 harness.async_test(function (test) {
-                    request('http://canvas-api.herokuapp.com/api/v1/tokens', 'post').then(function (xhr) {
-                        var tokenObj = JSON.parse(xhr.responseText),
-                            token = tokenObj['token'],
+                    promise.then(function (xhr) {
+                        var token = JSON.parse(xhr.responseText).token,
                             returnToken;
                         
                         // store token in the model
@@ -41,7 +42,22 @@ define(['testharness', 'request', 'db'],
                         });
                     });
                 }, "Save and retrieve the access token");
-                
+
+                harness.async_test(function (test) {
+                    promise.then(function (xhr) {
+                        var token = JSON.parse(xhr.responseText).token;
+
+                        request('http://canvas-api.herokuapp.com/api/v1/courses?access_token=' + token).then(function (xhr2) {
+                            var courses = JSON.parse(xhr2.responseText),
+                                links = xhr2.getResponseHeader('Link');
+
+                            test.step(function (){
+                                harness.assert_true(courses.length === 2 && courses[0].id === 1 && links.indexOf('http') !== -1);
+                                test.done();
+                            });
+                        });
+                    });
+                }, "Retrieve 2 courses and pagination links from Canvas API");
             }
         };
     }
