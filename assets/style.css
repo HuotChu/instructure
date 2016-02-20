@@ -1,7 +1,29 @@
-.parallax, .water, .hills, .mountains, .sky {
-    min-width: 100%;
-    max-width: 100%;
-    list-style-type: none;
+@font-face {
+    font-family: 'Satisfy';
+    src: url('fonts/Satisfy.eot');
+    src: url('fonts/Satisfy.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Satisfy.woff') format('woff'),
+    url('fonts/Satisfy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa Slab Regular FREE';
+    src: url('fonts/NexaSlabRegularFREE.eot');
+    src: url('fonts/NexaSlabRegularFREE.eot?#iefix') format('embedded-opentype'),
+    url('fonts/NexaSlabRegularFREE.woff') format('woff'),
+    url('fonts/NexaSlabRegularFREE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/fontawesome-webfont.eot?v=4.5.0');
+    src: url('fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @-webkit-keyframes backgroundScroll {
@@ -14,79 +36,296 @@
     to {background-position: -99999999px 0;}
 }
 
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+.centered {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.parallax, .water, .hills, .mountains, .sky {
+    min-width: 100%;
+    max-width: 100%;
+    list-style-type: none;
+}
+
 .water {
     background: url("water.jpg") repeat-x;
     background-size: cover;
-    -webkit-animation: backgroundScroll 500000s linear infinite;
     animation: backgroundScroll 500000s linear infinite;
     height: 20%;
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 998;
+    z-index: 6;
 }
 
 .hills {
     background: url("hills.png") repeat-x;
-    -webkit-animation: backgroundScroll 1000000s linear infinite;
     animation: backgroundScroll 1000000s linear infinite;
     height: 45px;
     position: absolute;
     bottom: 20%;
     left: 0;
-    z-index: 997;
+    z-index: 4;
 }
 
 .mountains {
     background: url("mountains.png") repeat-x;
     background-size: cover;
-    -webkit-animation: backgroundScroll 2000000s linear infinite;
     animation: backgroundScroll 2000000s linear infinite;
     height: 40%;
     position: absolute;
     bottom: 20%;
     left: 0;
-    z-index: 996;
+    z-index: 2;
 }
 
 .sky {
     background: url("sky.jpg") repeat-x;
     background-size: cover;
-    -webkit-animation: backgroundScroll 4000000s linear infinite;
     animation: backgroundScroll 4000000s linear infinite;
     height: 100%;
     position: absolute;
     bottom: 20%;
     left: 0;
-    z-index: 995;
+    z-index: 0;
 }
 
 .content {
     width: 100%;
-    height: 56%;
+    height: 80%;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 100;
 }
 
-.courseList, .description {
-    width: 50%;
-    height: 100%;
-    display: inline-block;
-}
-
-.courseList * {
-    margin-left: 20%;
-}
-
-.courseList {
+.header {
+    width: 100%;
+    font-size: 6em;
     position: relative;
-    top: 0;
+    top: 0.5em;
     left: 0;
+}
+
+.header, .courseName {
+    font-family: 'Satisfy', 'Times New Roman', Times, serif;
+    text-shadow: 2px 2px 1px #4f4f4f;
+    color: #ffffff;
+}
+
+.courseName {
+    font-size: 3em;
+    height: 25%;
 }
 
 .description {
+    font-family: 'Nexa Slab Regular FREE', 'Times New Roman', Times, serif;
+    font-size: 1.5em;
+    color: #4f4f4f;
+    position: relative;
+    height: 75%;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+.description p:first-child {
+    min-height: 130px;
+}
+
+.courseBackground {
     position: absolute;
     top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #cccccc;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    border-radius: 25px;
+    border: 2px solid #8a8a8a;
+    z-index: 10;
+}
+
+.course1, .course2 {
+    width: 36%;
+    display: inline-block;
+    margin-top: 6em;
+    padding: 40px;
+}
+
+.course1 {
+    position: relative;
+    left: 10%;
+}
+
+.course2 {
+    position: absolute;
+    right: 10%;
+}
+
+button {
+    cursor: pointer;
+    position: relative;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-shadow: 2px 2px 1px #1f284d;
+    background: none;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.enrollButton {
+    background-color: #40529F;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    border-radius: 8px;
+    border: 2px solid #1f284d;
+    width: 30%;
+    height: 54px;
+    margin: 30px 35% 0 35%;
+    font-weight: 700;
+}
+
+.enrollButton:active {
+    background: #5675d7;
+    top: 2px;
+}
+
+.enrollButton span {
+    display: inline-block;
+    font-family: 'Satisfy', 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+}
+
+.enrollButton:hover span {
+    transform: translateY(300%);
+}
+
+.enrollButton:before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: -100%;
+    font-size: 1.25em;
+    line-height: 1.15em;
+    transition: all 0.3s;
+}
+
+.enrollButton:hover:before {
+    top: 0;
+}
+
+.enrollButton:active:before {
+    color: #344381;
+}
+
+.icon {
+    font-family: 'FontAwesome', Times, serif;
+}
+
+.icon-pencil:before {
+    content: "\f19d";
+}
+
+.icon-arrow-right:before {
+    content: "\f061";
+}
+
+.icon-arrow-left:before {
+    content: "\f060";
+}
+
+.navigation-pane {
+    position: absolute;
+    top: 81%;
+    left: 40%;
+    width: 25%;
+    z-index: 200;
+}
+
+.nav {
+    display: inline-block;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-shadow: 1px 1px 0 #000000;
+    height: 46px;
+    width: 190px;
+    padding-top: 6px;
+    background-color: #1f284d;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    overflow: hidden;
+}
+
+.nav span {
+    font-family: 'Nexa Slab Regular FREE', 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav:active {
+    border-color: #40529F;
+    color: #5675d7;
+    z-index: 300;
+}
+
+.nav:hover {
+    background-color: #597de2;
+}
+
+.nav:before {
+    position: absolute;
+    height: 100%;
+    font-size: 90%;
+    line-height: 1.9em;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.nav:active:before {
+    color: #404e98;
+}
+
+.nav-left {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin-right: -3px;
+}
+
+.nav-left:before {
+    left: 30%;
+    top: 0;
+    opacity: 0;
+}
+
+.nav-left:hover:before {
+    left: 10%;
+    opacity: 1;
+}
+
+.nav-right {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: -3px;
+}
+
+.nav-right:before {
+    left: 65%;
+    top: 0;
+    opacity: 0;
+}
+
+.nav-right:hover:before {
+    left: 80%;
+    opacity: 1;
 }
