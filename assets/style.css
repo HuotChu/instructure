@@ -16,9 +16,10 @@
 
 .water {
     background: url("water.jpg") repeat-x;
+    background-size: cover;
     -webkit-animation: backgroundScroll 500000s linear infinite;
     animation: backgroundScroll 500000s linear infinite;
-    height: 286px;
+    height: 20%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -31,29 +32,61 @@
     animation: backgroundScroll 1000000s linear infinite;
     height: 45px;
     position: absolute;
-    bottom: 286px;
+    bottom: 20%;
     left: 0;
     z-index: 997;
 }
 
 .mountains {
     background: url("mountains.png") repeat-x;
+    background-size: cover;
     -webkit-animation: backgroundScroll 2000000s linear infinite;
     animation: backgroundScroll 2000000s linear infinite;
-    height: 220px;
+    height: 40%;
     position: absolute;
-    bottom: 286px;
+    bottom: 20%;
     left: 0;
     z-index: 996;
 }
 
 .sky {
     background: url("sky.jpg") repeat-x;
+    background-size: cover;
     -webkit-animation: backgroundScroll 4000000s linear infinite;
     animation: backgroundScroll 4000000s linear infinite;
-    height: 700px;
+    height: 100%;
     position: absolute;
-    bottom: 287px;
+    bottom: 20%;
     left: 0;
     z-index: 995;
+}
+
+.content {
+    width: 100%;
+    height: 56%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.courseList, .description {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
+
+.courseList * {
+    margin-left: 20%;
+}
+
+.courseList {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.description {
+    position: absolute;
+    top: 0;
 }
