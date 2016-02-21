@@ -19,7 +19,7 @@ define(['testharness', 'request', 'db'],
                         var responseText = xhr.responseText;
 
                         test.step(function () {
-                            harness.assert_true(responseText && JSON.parse(responseText) && xhr.statusText === "Created");
+                            harness.assert_true(responseText.length && JSON.parse(responseText) && xhr.statusText === "Created");
                             test.done();
                         });
                     });
@@ -31,9 +31,9 @@ define(['testharness', 'request', 'db'],
                             returnToken;
                         
                         // store token in the model
-                        model.insertInto('Users')('token', 'username').values(token, 'scottB');
+                        model.insertInto('Users')('token', 'username').values(token, 'Admin');
                         // pull token out of model
-                        returnToken = model.select('token').from('Users').where('username', '===', 'scottB').go() || [{token: ''}];
+                        returnToken = model.select('token').from('Users').where('username', '===', 'Admin').go() || [{token: ''}];
                         returnToken = returnToken[0]['token'];
                         
                         test.step(function () {
