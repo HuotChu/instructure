@@ -9,11 +9,11 @@
 }
 
 @font-face {
-    font-family: 'Nexa Slab Regular FREE';
-    src: url('fonts/NexaSlabRegularFREE.eot');
-    src: url('fonts/NexaSlabRegularFREE.eot?#iefix') format('embedded-opentype'),
-    url('fonts/NexaSlabRegularFREE.woff') format('woff'),
-    url('fonts/NexaSlabRegularFREE.ttf') format('truetype');
+    font-family: 'Source Code Pro';
+    src: url('fonts/SourceCodePro-Regular.eot');
+    src: url('fonts/SourceCodePro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/SourceCodePro-Regular.woff') format('woff'),
+    url('fonts/SourceCodePro-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -107,7 +107,7 @@
     width: 100%;
     font-size: 6em;
     position: relative;
-    top: 0.5em;
+    top: 0.2em;
     left: 0;
 }
 
@@ -123,8 +123,7 @@
 }
 
 .description {
-    font-family: 'Nexa Slab Regular FREE', 'Times New Roman', Times, serif;
-    font-size: 1.5em;
+    font-family: 'Source Code Pro', Monospace, sans-serif;
     color: #4f4f4f;
     position: relative;
     height: 75%;
@@ -133,7 +132,9 @@
 }
 
 .description p:first-child {
-    min-height: 130px;
+    min-height: 230px;
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
 .courseBackground {
@@ -153,7 +154,7 @@
 .course1, .course2 {
     width: 36%;
     display: inline-block;
-    margin-top: 6em;
+    margin-top: 3em;
     padding: 40px;
 }
 
@@ -167,10 +168,14 @@
     right: 10%;
 }
 
+.date {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
 button {
     cursor: pointer;
     position: relative;
-    font-size: 1.5em;
     color: #ffffff;
     text-shadow: 2px 2px 1px #1f284d;
     background: none;
@@ -189,6 +194,7 @@ button {
     width: 30%;
     height: 54px;
     margin: 30px 35% 0 35%;
+    font-size: 2.2em;
     font-weight: 700;
 }
 
@@ -247,7 +253,7 @@ button {
 
 .navigation-pane {
     position: absolute;
-    top: 81%;
+    top: 85%;
     left: 40%;
     width: 25%;
     z-index: 200;
@@ -260,7 +266,7 @@ button {
     text-shadow: 1px 1px 0 #000000;
     height: 46px;
     width: 190px;
-    padding-top: 6px;
+    /*padding-top: 6px;*/
     background-color: #1f284d;
     opacity: 0.6;
     filter: alpha(opacity=60);
@@ -268,7 +274,7 @@ button {
 }
 
 .nav span {
-    font-family: 'Nexa Slab Regular FREE', 'Times New Roman', Times, serif;
+    font-family: 'Source Code Pro', Monospace, sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -287,7 +293,7 @@ button {
     position: absolute;
     height: 100%;
     font-size: 90%;
-    line-height: 1.9em;
+    line-height: 1.5em;
     color: #fff;
     transition: all 0.3s;
 }
@@ -309,7 +315,7 @@ button {
 }
 
 .nav-left:hover:before {
-    left: 10%;
+    left: 8%;
     opacity: 1;
 }
 
@@ -320,7 +326,7 @@ button {
 }
 
 .nav-right:before {
-    left: 65%;
+    left: 63%;
     top: 0;
     opacity: 0;
 }
