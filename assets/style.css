@@ -105,7 +105,8 @@
 
 .header {
     width: 100%;
-    font-size: 6em;
+    font-size: 6em; /*legacy support*/
+    font-size: 12vmin;
     position: relative;
     top: 0.2em;
     left: 0;
@@ -118,8 +119,11 @@
 }
 
 .courseName {
-    font-size: 3em;
+    position: relative;
+    font-size: 3em; /*legacy support*/
+    font-size: 5.75vmin;
     height: 25%;
+    z-index: 100;
 }
 
 .description {
@@ -133,7 +137,8 @@
 
 .description p:first-child {
     min-height: 230px;
-    font-size: 1.1em;
+    font-size: 1.1em; /*legacy support*/
+    font-size: 1.75vmin;
     font-weight: 500;
 }
 
@@ -169,7 +174,8 @@
 }
 
 .date {
-    font-size: 1.3em;
+    font-size: 1.3em; /*legacy support*/
+    font-size: 2vmin;
     font-weight: 700;
 }
 
@@ -186,20 +192,24 @@ button {
 }
 
 .enrollButton {
-    background-color: #40529F;
+    position: relative;
+    background-color: #7179A6;
     opacity: 0.6;
     filter: alpha(opacity=60);
     border-radius: 8px;
-    border: 2px solid #1f284d;
+    border: 2px solid #535C96;
     width: 30%;
+    min-width: 90px;
     height: 54px;
     margin: 30px 35% 0 35%;
-    font-size: 2.2em;
+    font-size: 2.2em; /*legacy support*/
+    font-size: 3.75vmin;
     font-weight: 700;
+    z-index: 200;
 }
 
 .enrollButton:active {
-    background: #5675d7;
+    background: #8D96B9;
     top: 2px;
 }
 
@@ -232,7 +242,7 @@ button {
 }
 
 .enrollButton:active:before {
-    color: #344381;
+    color: #535C96;
 }
 
 .icon {
@@ -263,6 +273,7 @@ button {
     display: inline-block;
     border: 2px solid #ffffff;
     color: #ffffff;
+    font-size: 1.2em;
     text-shadow: 1px 1px 0 #000000;
     height: 46px;
     width: 190px;
@@ -293,7 +304,7 @@ button {
     position: absolute;
     height: 100%;
     font-size: 90%;
-    line-height: 1.5em;
+    line-height: 2.5em;
     color: #fff;
     transition: all 0.3s;
 }
@@ -332,6 +343,6 @@ button {
 }
 
 .nav-right:hover:before {
-    left: 80%;
+    left: 83%;
     opacity: 1;
 }
