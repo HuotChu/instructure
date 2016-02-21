@@ -12,24 +12,7 @@
 
 <section id="content-pane" class="content">
     <div class="header centered" id="header-text">Do what moves you</div>
-    <div class="course1" id="course_1">
-        <div class="courseBackground"></div>
-        <p class="courseName centered">Intro to Literary Theory</p>
-        <div class="description">
-            <p>An introduction to literary theory, including structuralist, formalist, and historical approaches.</p>
-            <p class="centered">Classes begin September 28, 2016</p>
-            <button class="enrollButton icon icon-pencil"><span>Enroll</span></button>
-        </div>
-    </div>
-    <div class="course2" id="course_2">
-        <div class="courseBackground"></div>
-        <p class="courseName centered">Fine Art Mastery</p>
-        <div class="description">
-            <p>A class about fine art, including structure, form, and artistic approaches.</p>
-            <p class="centered">Classes begin July 18, 2016</p>
-            <button class="enrollButton icon icon-pencil"><span>Enroll</span></button>
-        </div>
-    </div>
+    <span id="dynamic-content"></span>
 </section>
 
 <section id="navigation" class="navigation-pane">
@@ -47,6 +30,18 @@
 </section>
 
 <script src="lib/require-min.js"></script>
+
+<script>
+    require.config({
+        baseUrl: './',
+        paths: {
+            controller: 'app/controller',
+            model: 'app/model'
+        },
+        deps: ['controller']
+    });
+</script>
+
 <script src="lib/square-min.js"></script>
 
 </body>
