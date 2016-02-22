@@ -137,8 +137,8 @@
 
 .courseName {
     position: relative;
-    font-size: 3em; /*legacy support*/
-    font-size: 3vw;
+    font-size: 2.5em; /*legacy support*/
+    font-size: 2.5vw;
     height: 25%;
     z-index: 100;
 }
