@@ -93,6 +93,23 @@ define(['box', 'model'], function(Box, modelPromise) {
                         domEvents: [
                             {
                                 event: 'click',
+                                id: 'confirm-button',
+                                callback: function (id) {
+                                    model.enroll(id).then(function (statusText) {
+                                        var title = document.querySelector('.winHeader'),
+                                            body = document.querySelector('.winDetails');
+                                        
+                                        title.innerHTML = 'Success!';
+                                        body.innerHTML = '<div class=\"details-description\" style=\"font-size\: 1.5em\">You are now enrolled.<br>This window will close in 5 seconds.<\/div>';
+                                        setTimeout(function () {
+                                            formConfig.target.innerHTML = '';
+                                        }, 5000);
+                                        console.log('statusText');
+                                    });
+                                }
+                            },
+                            {
+                                event: 'click',
                                 id: 'cancel-button',
                                 callback: function () {
                                     formConfig.target.innerHTML = '';
