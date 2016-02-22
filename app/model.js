@@ -47,6 +47,17 @@ define(['db', 'eventHub', 'request'], function (db, eventHub, request) {
                     resolve(courses);
                 }
             });
+        },
+        enroll = function (id) {
+            var token = this.select('token').from('State').go()[0].token,
+                resource = api + 'courses/' + id + '/enrollemnts?access_token=' + token,
+                model = this;
+            
+            return new Promise(function (resolve) {
+                request(resource).then(function (xhr) {
+                    resolve(xhr.statusText);
+                });
+            });
         };
 
     return new Promise(function (resolve, reject) {
@@ -59,6 +70,8 @@ define(['db', 'eventHub', 'request'], function (db, eventHub, request) {
         model.createTable('Courses')('page');
         // hook in the getPage method
         model.getPage = getPage.bind(model);
+        // hook in enroll method
+        model.enroll = enroll.bind(model);
         
         // get a token
         request(api + 'tokens', 'post').then(function (xhr) {
