@@ -123,13 +123,13 @@
 .header {
     width: 100%;
     font-size: 6em; /*legacy support*/
-    font-size: 12vm;
+    font-size: 6vw;
     position: relative;
     top: 0.2em;
     left: 0;
 }
 
-.header, .courseName {
+.header, .courseName, .winHeader {
     font-family: 'Satisfy', 'Times New Roman', Times, serif;
     text-shadow: 2px 2px 1px #4f4f4f;
     color: #ffffff;
@@ -138,7 +138,7 @@
 .courseName {
     position: relative;
     font-size: 3em; /*legacy support*/
-    font-size: 5.75vm;
+    font-size: 3vw;
     height: 25%;
     z-index: 100;
 }
@@ -154,8 +154,8 @@
 
 .description p:first-child {
     min-height: 230px;
-    font-size: 1.1em; /*legacy support*/
-    font-size: 1.75vm;
+    font-size: 0.9em; /*legacy support*/
+    font-size: 0.9vw;
     font-weight: 500;
 }
 
@@ -191,8 +191,8 @@
 }
 
 .date {
-    font-size: 1.3em; /*legacy support*/
-    font-size: 2vm;
+    font-size: 1.1em; /*legacy support*/
+    font-size: 1.1vw;
     font-weight: 700;
 }
 
@@ -219,8 +219,8 @@ button {
     min-width: 90px;
     height: 54px;
     margin: 30px 35% 0 35%;
-    font-size: 2.2em; /*legacy support*/
-    font-size: 3.75vm;
+    font-size: 1.8em; /*legacy support*/
+    font-size: 1.8vw;
     font-weight: 700;
     z-index: 200;
 }
@@ -250,6 +250,7 @@ button {
     left: 0;
     top: -100%;
     font-size: 1.25em;
+    font-size: 2.3vw;
     line-height: 1.15em;
     transition: all 0.3s;
 }
@@ -292,7 +293,8 @@ button {
     border: 2px solid #ffffff;
     border-radius: 50%;
     color: #ffffff;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    font-size: 1.1vw;
     text-shadow: 1px 1px 0 #000000;
     height: 90px;
     width: 90px;
@@ -309,7 +311,7 @@ button {
 }
 
 .nav:active {
-    border-color: #40529F;
+    border-color: #40529f;
     color: #5675d7;
 }
 
@@ -362,4 +364,88 @@ button {
 .nav-right:hover:before {
     right: 25%;
     opacity: 1;
+}
+
+#enrollment_form, .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;  /*legacy support*/
+    height: 100%; /*legacy support*/
+    width: 100vw;
+    height: 100vh;
+    z-index: 600;
+}
+
+.overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    z-index: 700;
+}
+
+.popWin {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 400px;
+    min-width: 800px;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #878c9f;
+    border: 2px solid #3f414a;
+    color: #d9d9d9;
+    z-index: 800;
+}
+
+.winHeader {
+    position: relative;
+    font-size: 3em; /*legacy support*/
+    font-size: 3vw;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.details, .details-description {
+    font-family: 'Source Code Pro', Monospace, sans-serif;
+    font-size: 0.9em; /*legacy support*/
+    font-size: 0.9vw;
+    font-weight: 500;
+    position: relative;
+}
+
+.details {
+    width: 350px;
+    display: inline-block;
+}
+
+.details-left {
+    left: 80px;
+}
+
+.details-right {
+    left: 200px;
+}
+
+.details-description {
+    margin: 10px 80px 40px 80px;
+    font-size: 0.75em; /*legacy support*/
+    font-size: 0.75vw;
+}
+
+.winButtons {
+    position: relative;
+}
+
+.popButton {
+    font-size: 1.2em;
+    font-size: 1.2vw;
 }
