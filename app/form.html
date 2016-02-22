@@ -1,0 +1,25 @@
+<section id="enrollment_form">
+    <div class="overlay"></div>
+    <div class="popWin">
+        <div class="winHeader centered">Review and Confirm</div>
+        <div class="winDetails">
+            <div class="details details-left">
+                <p>Name: {{name}}</p>
+                <p>Starts: {{start_at}}</p>
+                <p>Ends: {{end_at}}</p>
+            </div>
+            <div class="details details-right">
+                <p>Code: {{code}}</p>
+                <p>Added: {{created_at}}</p>
+                <p>Updated: {{updated_at}}</p>
+            </div>
+            <div class="details-description">
+                {{description}}
+            </div>
+            <div class="winButtons centered">
+                <button class="popButton confirm" data-index="confirm-button">Confirm</button>
+                <button class="popButton cancel" data-index="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+</section>
