@@ -3,25 +3,15 @@ define(['box', 'model'], function(Box, modelPromise) {
     
     var containerDOM = document.querySelector('#dynamic-content'),
         formatDate = function (dateStr) {
-        var date = new Date(dateStr).toString();
+            var date = dateStr.substr(0, dateStr.indexOf('+') - 1),
+                months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-        date = date.replace(/\w{3,4}\s(\w{3})\s(\d{1,2}).*/, function (m, p1, p2) {
-            var regX = new RegExp(p1, 'i'),
-                months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                fullName = '';
+            date = new Date(date).toLocaleString();
+            date = date.split(/\s/);
+            date = date[0].split('/');
             
-            months.some(function (month) {
-                if (regX.test(month)) {
-                    fullName = month;
-                    return true;
-                }
-            });
-            
-            return fullName + ' ' + p2 + ', 2016';
-        });
-    
-        return date;
-    }, 
+            return months[date[0] - 1] + ' ' + date[1] + ', 2016';
+        },
     transformer = function (data) {
         var i = 0,
             returnArray = [],
@@ -30,8 +20,7 @@ define(['box', 'model'], function(Box, modelPromise) {
         
         for (i; i < 2; ++i) {
             course = data[i];
-            date = course.start_at ? course.start_at.split(/\s/) : 'TBA';
-            date = date instanceof Array ? formatDate(date[0]) : date;
+            date = course.start_at ? formatDate(course.start_at) : 'TBA';
             returnArray[i] = {
                 position: i + 1,
                 id: course.id,
@@ -42,17 +31,80 @@ define(['box', 'model'], function(Box, modelPromise) {
         }
         
         return returnArray;
-    },
-    doEnroll = {
-        event: 'click',
-        id: '_enrollButton_',
-        callback: function (id) {
-            console.log('Enroll button ' + id + ' clicked.');
-        }
     };
 
     modelPromise.then(function (model) {
         var courseData = model.select('*').from('Courses').go(),
+            fixDate = function (d) {
+                d = d.substr(0, d.indexOf('+') - 1);
+                d = new Date(d).toLocaleString();
+                d = d.replace(/(\d{1,2}:\d\d):\d{1,2}/, function (m, p) {
+                    return p;
+                });
+                
+                return d;
+            },
+            doEnroll = {
+                event: 'click',
+                id: '_enrollButton_',
+                callback: function (id) {
+                    var targetCourse = model.select('*').from('Courses').where('id', '==', id).go()[0],
+                        start = targetCourse.start_at,
+                        end = targetCourse.end_at,
+                        created = targetCourse.created_at,
+                        updated = targetCourse.updated_at,
+                        formConfig;
+
+                    if (!start) {
+                        start = 'TBA';
+                    } else {
+                        start = start.replace(/201\d/, 2016);
+                        start = fixDate(start);
+                    }
+                    
+                    if (!end) {
+                        end = 'TBA';
+                    } else {
+                        end = fixDate(end);
+                    }
+                    
+                    if (!created) {
+                        created = 'Unknown'
+                    } else {
+                        created = fixDate(created);
+                    }
+                    
+                    if (!updated) {
+                        updated = created;
+                    } else {
+                        updated = fixDate(updated);
+                    }
+
+                    targetCourse.start_at = start;
+                    targetCourse.end_at = end;
+                    targetCourse.created_at = created;
+                    targetCourse.updated_at = updated;
+                    
+                    formConfig = {
+                        model: model,
+                        data: targetCourse,
+                        target: document.querySelector('#form_attach'),
+                        template: 'app/form.html',
+                        domEvents: [
+                            {
+                                event: 'click',
+                                id: 'cancel-button',
+                                callback: function () {
+                                    formConfig.target.innerHTML = '';
+                                }
+                            }
+                        ]
+                    };
+
+                    formConfig.target.innerHTML = '';
+                    new Box(formConfig);
+                }
+            },
             config = {
                 model: model,
     
@@ -88,7 +140,7 @@ define(['box', 'model'], function(Box, modelPromise) {
                     {
                         event: 'Canvas.State.current_page.update',
                         id: 'page',
-                        callback: function (e, el, box) {
+                        callback: function (e) {
                             var pageNumber = e.detail.value;
 
                             containerDOM.innerHTML = '';
